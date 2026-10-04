@@ -1,0 +1,85 @@
+use super::verify_mouse_driver_command_routes;
+
+#[test]
+fn command_routes_cover_help_invalid_parameters_and_resident_unload() {
+    let fixture = command_route_fixture();
+
+    verify_mouse_driver_command_routes(&fixture).unwrap();
+}
+
+#[test]
+fn out_of_range_frequency_must_reach_the_invalid_parameter_state() {
+    let mut fixture = command_route_fixture();
+    write_com(&mut fixture, 0x0b4a, &[0x77, 0x07]);
+
+    let error = verify_mouse_driver_command_routes(&fixture).unwrap_err();
+
+    assert!(
+        error
+            .to_string()
+            .contains("frequency within zero through three")
+    );
+}
+
+#[test]
+fn resident_signature_match_must_reach_the_unload_output() {
+    let mut fixture = command_route_fixture();
+    write_com(&mut fixture, 0x09aa, &[0x74, 0x3b]);
+
+    let error = verify_mouse_driver_command_routes(&fixture).unwrap_err();
+
+    assert!(
+        error
+            .to_string()
+            .contains("not-resident installation route")
+    );
+}
+
+fn command_route_fixture() -> Vec<u8> {
+    let mut bytes = vec![0_u8; 0x0b60 - 0x0100];
+
+    for (address, code) in [
+        (0x095e, &[0x80, 0x3e, 0x80, 0x00, 0x00][..]),
+        (0x0963, &[0x75, 0x08]),
+        (0x0965, &[0xe8, 0x0c, 0x01]),
+        (0x099a, &[0xbe, 0x06, 0x01]),
+        (0x099d, &[0xbf, 0x06, 0x01]),
+        (0x09a4, &[0xb9, 0x0a, 0x00]),
+        (0x09a8, &[0xf3, 0xa6]),
+        (0x09aa, &[0x75, 0x3b]),
+        (0x09db, &[0xba, 0x0e, 0x0c]),
+        (0x09de, &[0xb4, 0x09]),
+        (0x09e0, &[0xcd, 0x21]),
+        (0x09e2, &[0xb8, 0x00, 0x4c]),
+        (0x09e5, &[0xcd, 0x21]),
+        (0x09f9, &[0xe8, 0x00, 0x01]),
+        (0x09fc, &[0x80, 0x3e, 0x14, 0x0f, 0x00]),
+        (0x0a01, &[0x74, 0x0c]),
+        (0x0a03, &[0xba, 0xe0, 0x0e]),
+        (0x0a06, &[0xb4, 0x09]),
+        (0x0a08, &[0xcd, 0x21]),
+        (0x0a0a, &[0xb8, 0x02, 0x4c]),
+        (0x0a0d, &[0xcd, 0x21]),
+        (0x0a74, &[0xba, 0xc7, 0x0c]),
+        (0x0a77, &[0xb4, 0x09]),
+        (0x0a79, &[0xcd, 0x21]),
+        (0x0b2a, &[0x3c, 0x41]),
+        (0x0b2c, &[0x74, 0x0d]),
+        (0x0b30, &[0x3c, 0x4e]),
+        (0x0b32, &[0x74, 0x07]),
+        (0x0b34, &[0xc6, 0x06, 0x14, 0x0f, 0x01]),
+        (0x0b44, &[0x3c, 0x30]),
+        (0x0b46, &[0x72, 0x04]),
+        (0x0b48, &[0x3c, 0x33]),
+        (0x0b4a, &[0x76, 0x07]),
+        (0x0b4c, &[0xc6, 0x06, 0x14, 0x0f, 0x02]),
+    ] {
+        write_com(&mut bytes, address, code);
+    }
+    bytes
+}
+
+fn write_com(bytes: &mut [u8], address: usize, code: &[u8]) {
+    let offset = address - 0x0100;
+    bytes[offset..offset + code.len()].copy_from_slice(code);
+}

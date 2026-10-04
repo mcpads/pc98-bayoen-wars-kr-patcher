@@ -1,0 +1,15 @@
+{
+  "schema": "bayoen_wars.font_profile",
+  "id": "title-primary16-galmuri11-bold-v2.40.3-15px",
+  "target": "title-primary16",
+  "font": "Galmuri11-Bold.ttf",
+  "font_sha256": "5265b2f437fe81f0c8095b44c0173dd9a276b58a42552bf983f21c0e69e6e8af",
+  "font_version": "2.403",
+  "font_size": 15,
+  "baseline_y": 15,
+  "threshold": 128,
+  "rasterizer": "fontdue 0.9.3",
+  "license": "Galmuri-OFL.txt",
+  "source": "https://github.com/quiple/galmuri",
+  "upstream_revision": "c53c3038e200c5516c84c66cede840ae1c409b2d"
+}

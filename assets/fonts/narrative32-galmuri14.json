@@ -1,0 +1,15 @@
+{
+  "schema": "bayoen_wars.font_profile",
+  "id": "narrative32-galmuri14-v2.40.4-28px",
+  "target": "narrative32",
+  "font": "Galmuri14.ttf",
+  "font_sha256": "6fe6c3fe4369e3837ac348431e8670733d67aa4bd550982baa72cc93c81a1c68",
+  "font_version": "2.404",
+  "font_size": 28,
+  "baseline_y": 30,
+  "threshold": 128,
+  "rasterizer": "fontdue 0.9.3",
+  "license": "Galmuri-OFL.txt",
+  "source": "https://github.com/quiple/galmuri",
+  "upstream_revision": "bdb86ae89466a361eb8df861222736b81ff975ef"
+}

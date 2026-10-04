@@ -1,0 +1,15 @@
+{
+  "schema": "bayoen_wars.font_profile",
+  "id": "baked-display16-mulmaru-mono-v1.0-14px",
+  "target": "baked-display16",
+  "font": "MulmaruMono.ttf",
+  "font_sha256": "34a1641eb4e94449b26192321e8e0c2bd4f07ef3674fac8abed33d8953a7f70d",
+  "font_version": "1.0",
+  "font_size": 14,
+  "baseline_y": 14,
+  "threshold": 128,
+  "rasterizer": "fontdue 0.9.3",
+  "license": "Mulmaru-OFL.txt",
+  "source": "https://github.com/mushsooni/mulmaru",
+  "upstream_revision": "ea9843cefa3a26fe71fd4abd7d4b46d82cb90354"
+}
