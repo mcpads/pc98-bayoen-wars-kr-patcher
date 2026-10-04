@@ -50,7 +50,7 @@ cargo run --release -- build --source "Disc Station Vol. 05 (Disk 1).hdm"
 | 선택·난이도 그래픽, 타이틀 부제 폰트 | `assets/fonts/MulmaruMono.ttf` | [물마루](https://github.com/mushsooni/mulmaru) 1.0 |
 | 폰트 라이선스 | `assets/fonts/Galmuri-OFL.txt`, `assets/fonts/Mulmaru-OFL.txt` | 각 폰트 배포처의 OFL 전문 |
 
-폰트 디렉터리는 `BAYOEN_WARS_FONT_DIR` 환경 변수로 바꿀 수 있습니다. 폰트는 재배포 조건을 이 저장소에서 보장할 수 없어 포함하지 않습니다. 각 폰트의 라이선스는 배포처에서 확인하세요. `assets/fonts/*.json`의 폰트 프로필이 크기·기준선과 폰트 SHA-256을 고정하며, 폰트 파일의 SHA-256이 다르면 빌드가 진행하지 않습니다.
+폰트 디렉터리는 `BAYOEN_WARS_FONT_DIR` 환경 변수로 바꿀 수 있습니다. `assets/fonts/*.json`의 폰트 프로필이 크기·기준선과 폰트 SHA-256을 고정하며, 폰트 파일의 SHA-256이 다르면 빌드가 진행하지 않습니다.
 
 ```text
 6fe6c3fe4369e3837ac348431e8670733d67aa4bd550982baa72cc93c81a1c68  Galmuri14.ttf
